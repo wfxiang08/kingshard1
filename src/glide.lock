@@ -1,5 +1,5 @@
-hash: 499f269d44f70a6e2f6de86c2413947368bc5bdeff44e0debdc0a1c2cce36cfc
-updated: 2017-04-05T00:06:18.322212039+08:00
+hash: 782f84812cf1f773642c2b05440ecbd269c5a75ef3fb3e35d48924bce1969a98
+updated: 2017-04-04T16:10:12.851411362Z
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 24c63f56522a87ec5339cc3567883f1039378fdb
@@ -41,6 +41,10 @@ imports:
   version: d9157a9621b69ad1d8d77a1933590c416593f24f
   subpackages:
   - unix
+- name: golang.org/x/tools
+  version: 37a1062ad0bb70f026cd45d6b92cb37eacd927bb
+  subpackages:
+  - cmd/goyacc
 - name: gopkg.in/yaml.v2
   version: 31c299268d302dd0aa9a0dcf765a3d58971ac83f
 testImports: []
