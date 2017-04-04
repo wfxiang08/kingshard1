@@ -2,7 +2,7 @@ all: build
 
 build: kingshard
 goyacc:
-	go build -o ./bin/goyacc ./vendor/golang.org/x/tools/cmd/goyacc
+	go build -o ../bin/goyacc ./vendor/golang.org/x/tools/cmd/goyacc
 kingshard: goyacc
 	./bin/goyacc -o ./sqlparser/sql.go ./sqlparser/sql.y
 	gofmt -w ./sqlparser/sql.go

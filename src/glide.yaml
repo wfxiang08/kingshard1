@@ -27,6 +27,10 @@ import:
 - package: github.com/valyala/fasttemplate
   version: 3b874956e03f1636d171bda64b130f9135f42cff
 
+- package: golang.org/x/tools
+  subpackages:
+  - cmd/goyacc
+
 - package: golang.org/x/net
   subpackages:
   - context
