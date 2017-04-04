@@ -8,10 +8,10 @@ import (
 	"runtime"
 	"syscall"
 
-	"kingshard/config"
-	"kingshard/core/hack"
-	"kingshard/proxy/server"
-	"kingshard/web"
+	"config"
+	"core/hack"
+	"proxy/server"
+	"web"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 	"strings"
 )

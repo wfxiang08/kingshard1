@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"kingshard/core/errors"
+	"core/errors"
 )
 
 const (

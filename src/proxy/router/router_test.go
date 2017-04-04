@@ -20,8 +20,8 @@ import (
 
 	"gopkg.in/yaml.v2"
 
-	"kingshard/config"
-	"kingshard/sqlparser"
+	"config"
+	"sqlparser"
 )
 
 // Rule的解析以及测试

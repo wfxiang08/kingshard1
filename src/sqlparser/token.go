@@ -23,7 +23,7 @@ import (
 	"fmt"
 	"strings"
 
-	"kingshard/sqltypes"
+	"sqltypes"
 )
 
 const EOFCHAR = 0x100

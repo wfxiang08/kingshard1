@@ -18,9 +18,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"kingshard/core/errors"
-	"kingshard/core/hack"
-	"kingshard/mysql"
+	"core/errors"
+	"core/hack"
+	"mysql"
 )
 
 func formatValue(value interface{}) ([]byte, error) {

@@ -12,12 +12,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"kingshard/mysql"
+	"mysql"
 
-	"kingshard/backend"
-	"kingshard/config"
-	"kingshard/core/errors"
-	"kingshard/proxy/router"
+	"backend"
+	"config"
+	"core/errors"
+	"proxy/router"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 

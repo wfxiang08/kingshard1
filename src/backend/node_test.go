@@ -17,7 +17,7 @@ package backend
 import (
 	"testing"
 
-	"kingshard/config"
+	"config"
 )
 
 func TestParse(t *testing.T) {

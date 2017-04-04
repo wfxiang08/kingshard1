@@ -22,9 +22,9 @@ import (
 	"runtime"
 	"sync"
 
-	"kingshard/backend"
-	"kingshard/core/hack"
-	"kingshard/mysql"
+	"backend"
+	"core/hack"
+	"mysql"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 

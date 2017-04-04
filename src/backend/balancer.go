@@ -18,7 +18,7 @@ import (
 	"math/rand"
 	"time"
 
-	"kingshard/core/errors"
+	"core/errors"
 )
 
 //

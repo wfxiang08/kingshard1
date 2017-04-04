@@ -26,8 +26,8 @@ import (
 	"strconv"
 	"time"
 
-	"kingshard/core/errors"
-	"kingshard/core/hack"
+	"core/errors"
+	"core/hack"
 )
 
 /*由分片ID找到分片，可用文件中的函数*/

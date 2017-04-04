@@ -19,8 +19,8 @@ import (
 	"testing"
 	"time"
 
-	"kingshard/backend"
-	"kingshard/config"
+	"backend"
+	"config"
 )
 
 var testServerOnce sync.Once

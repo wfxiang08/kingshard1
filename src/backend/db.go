@@ -5,8 +5,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"kingshard/core/errors"
-	"kingshard/mysql"
+	"core/errors"
+	"mysql"
 )
 
 const (

@@ -22,7 +22,7 @@ import (
 	"strings"
 	"time"
 
-	ksError "kingshard/core/errors"
+	ksError "core/errors"
 	"github.com/labstack/echo"
 )
 

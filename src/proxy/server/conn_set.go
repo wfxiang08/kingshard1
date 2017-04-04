@@ -19,9 +19,9 @@ import (
 	"strings"
 	"time"
 
-	"kingshard/backend"
-	"kingshard/mysql"
-	"kingshard/sqlparser"
+	"backend"
+	"mysql"
+	"sqlparser"
 	"github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 

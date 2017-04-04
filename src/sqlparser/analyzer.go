@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"strings"
 
-	"kingshard/sqltypes"
+	"sqltypes"
 )
 
 // GetDBName parses the specified DML and returns the

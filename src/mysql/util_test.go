@@ -18,7 +18,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"kingshard/core/hack"
+	"core/hack"
 )
 
 func TestCalcPassword(t *testing.T) {

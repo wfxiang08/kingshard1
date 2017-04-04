@@ -22,8 +22,8 @@ import (
 	"errors"
 	"strconv"
 
-	"kingshard/core/hack"
-	"kingshard/sqltypes"
+	"core/hack"
+	"sqltypes"
 )
 
 // Instructions for creating new types: If a type

@@ -21,8 +21,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"kingshard/config"
-	"kingshard/core/errors"
+	"config"
+	"core/errors"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 

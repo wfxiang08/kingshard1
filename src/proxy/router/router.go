@@ -16,9 +16,9 @@ package router
 
 import (
 	"fmt"
-	"kingshard/config"
-	"kingshard/core/errors"
-	"kingshard/sqlparser"
+	"config"
+	"core/errors"
+	"sqlparser"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 	"strings"
 )

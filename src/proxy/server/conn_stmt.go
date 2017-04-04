@@ -21,9 +21,9 @@ import (
 	"strconv"
 	"strings"
 
-	"kingshard/core/errors"
-	"kingshard/mysql"
-	"kingshard/sqlparser"
+	"core/errors"
+	"mysql"
+	"sqlparser"
 	"github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 

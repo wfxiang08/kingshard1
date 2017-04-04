@@ -21,9 +21,9 @@ import (
 	"strings"
 
 	"fmt"
-	"kingshard/core/errors"
+	"core/errors"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
-	"kingshard/sqlparser"
+	"sqlparser"
 )
 
 const (

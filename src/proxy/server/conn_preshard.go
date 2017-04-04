@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	"kingshard/backend"
-	"kingshard/core/errors"
-	"kingshard/core/hack"
-	"kingshard/mysql"
-	"kingshard/proxy/router"
-	"kingshard/sqlparser"
+	"backend"
+	"core/errors"
+	"core/hack"
+	"mysql"
+	"proxy/router"
+	"sqlparser"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 
