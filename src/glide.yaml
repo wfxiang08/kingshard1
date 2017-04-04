@@ -2,9 +2,46 @@ package: .
 import:
 - package: github.com/labstack/echo
   subpackages:
+  - context
+  - engine
   - engine/standard
+  - log
   - middleware
+  version: 03efe4d61b73979961720b92c3cee985c29a24f2
+- package: github.com/labstack/gommon
+  subpackages:
+  - bytes
+  - color
+  - log
+  - random
+  version: 431777a5117c8de4352a400dad1e2a55f484b189
+- package: github.com/mattn/go-colorable
+  version: ed8eb9e318d7a84ce5915b495b7d35e0cfe7b5a8
+
+- package: github.com/mattn/go-isatty
+  version: 66b8e73f3f5cda9f96b69efd03dd3d7fc4a5cdb8
+
 - package: github.com/tylerb/graceful
+  version: 48afeb21e2fcbcff0f30bd5ad6b97747b0fae38e
+
+- package: github.com/valyala/fasttemplate
+  version: 3b874956e03f1636d171bda64b130f9135f42cff
+
+- package: golang.org/x/net
+  subpackages:
+  - context
+  - netutil
+  version: 9313baa13d9262e49d07b20ed57dceafcd7240cc
+- package: golang.org/x/sys
+  subpackages:
+  - unix
+  version: d9157a9621b69ad1d8d77a1933590c416593f24f
+- package: gopkg.in/yaml.v2
+  version: 31c299268d302dd0aa9a0dcf765a3d58971ac83f
+
 - package: github.com/wfxiang08/cyutils
   subpackages:
   - utils/rolling_log
+- package: github.com/dgrijalva/jwt-go
+  version: 24c63f56522a87ec5339cc3567883f1039378fdb
+
