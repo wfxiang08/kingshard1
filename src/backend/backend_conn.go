@@ -356,7 +356,7 @@ func (c *Conn) Ping() error {
 
 // 建立连接之后选择 database
 func (c *Conn) UseDB(dbName string) error {
-	fmt.Printf("UserDB: %s\n", dbName)
+	// fmt.Printf("UserDB: %s\n", dbName)
 	if c.db == dbName || len(dbName) == 0 {
 		return nil
 	}

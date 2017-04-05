@@ -322,7 +322,7 @@ func (c *ClientConn) Run() {
 func (c *ClientConn) dispatch(data []byte) error {
 	c.proxy.counter.IncrClientQPS()
 
-	log.Debugf("ClientConn: %s", string(data))
+	// log.Debugf("ClientConn: %s", string(data))
 
 	// 读取Command和data
 	cmd := data[0]

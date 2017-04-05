@@ -7,7 +7,6 @@ import (
 
 	"core/errors"
 	"mysql"
-	"fmt"
 )
 
 const (
@@ -198,7 +197,7 @@ func (db *DB) Ping() error {
 //
 func (db *DB) newConn() (*Conn, error) {
 	co := new(Conn)
-	fmt.Printf("Processing DB: %s\n", db.db)
+	//fmt.Printf("Processing DB: %s\n", db.db)
 	if err := co.Connect(db.addr, db.user, db.password, db.db); err != nil {
 		return nil, err
 	}
@@ -318,7 +317,7 @@ func (db *DB) GetConnFromIdle(cacheConns, idleConns chan *Conn) (*Conn, error) {
 	var err error
 	select {
 	case co = <-idleConns:
-		fmt.Printf("Processing DB: %s\n", db.db)
+		// fmt.Printf("Processing DB: %s\n", db.db)
 		err = co.Connect(db.addr, db.user, db.password, db.db)
 		if err != nil {
 			db.closeConn(co)
