@@ -30,7 +30,7 @@ import:
 - package: golang.org/x/tools
   subpackages:
   - cmd/goyacc
-  version: 37a1062ad0bb70f026cd45d6b92cb37eacd927bb
+  version: 5682db0e919ed9cfc6f52ac32e170511a106eb3b
 
 - package: golang.org/x/net
   subpackages:

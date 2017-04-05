@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-// go test kingshard/proxy/router -v -run "TestSMShard"
+// go test proxy/router -v -run "TestSMShard"
 func TestSMShard(t *testing.T) {
 
 	fmt.Printf("Shard: %d\n", SMShard(7895866))

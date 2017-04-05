@@ -5,4 +5,5 @@ y.output
 core/hack/version.go
 .vscode/
 src/main
+src/vendor
 src/kingshard

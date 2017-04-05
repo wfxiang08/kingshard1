@@ -25,7 +25,7 @@ import (
 )
 
 // Rule的解析以及测试
-// go test kingshard/proxy/router -v -run "TestParseRule"
+// go test proxy/router -v -run "TestParseRule"
 func TestParseRule(t *testing.T) {
 	var s = `
 schema:
@@ -136,7 +136,7 @@ schema :
     -
       db: kingshard
       table: test1
-      key: id
+      keys: [id]
       nodes: [node1,node2,node3]
       locations: [4,4,4]
       type: hash
@@ -144,7 +144,7 @@ schema :
     -
       db: kingshard
       table: test2
-      key: id
+      keys: [id]
       type: range
       nodes: [node1,node2,node3]
       locations: [4,4,4]
@@ -152,21 +152,21 @@ schema :
     -
       db: kingshard
       table: test_shard_year
-      key: date
+      keys: [date]
       nodes: [node2, node3]
       date_range: [2012-2015,2016-2018]
       type: date_year
     -
       db: kingshard
       table: test_shard_month
-      key: date
+      keys: [date]
       type: date_month
       nodes: [node2, node3]
       date_range: [201512-201603,201604-201608]
     -
       db: kingshard
       table: test_shard_day
-      key: date
+      keys: [date]
       type: date_day
       nodes: [node2, node3]
       date_range: [20151201-20160122,20160202-20160308]
@@ -199,21 +199,21 @@ schema:
     -
       db: kingshard
       table: test_shard_year
-      key: date
+      keys: [date]
       nodes: [node2, node3]
       date_range: [2012-2015,2016-2018]
       type: date_year
     -
       db: kingshard
       table: test_shard_month
-      key: date
+      keys: [date]
       type: date_month
       nodes: [node2, node3]
       date_range: [201512-201603,201604-201608]
     -
       db: kingshard
       table: test_shard_day
-      key: date
+      keys: [date]
       type: date_day
       nodes: [node2, node3]
       date_range: [20151201-20160122,20160202-20160308]
@@ -273,7 +273,7 @@ schema :
     -
       db: kingshard
       table: test1
-      key: id
+      keys: [id]
       nodes: [node1,node2,node3]
       locations: [1,2,3]
       type: hash
@@ -281,7 +281,7 @@ schema :
     -
       db: kingshard
       table: test2
-      key: id
+      keys: [id]
       type: range
       nodes: [node1,node2,node3]
       locations: [8,8,8]
@@ -397,12 +397,12 @@ func checkPlan(t *testing.T, sql string, tableIndexs []int, nodeIndexs []int) {
 
 //db: kingshard
 //table: test1
-//key: id
+//keys: [id]
 //nodes: [node1,node2,node3]
 //locations: [4,4,4]
 //type: hash
 //
-// go test kingshard/proxy/router -v -run "TestWhereInPartitionByTableIndex"
+// go test proxy/router -v -run "TestWhereInPartitionByTableIndex"
 func TestWhereInPartitionByTableIndex(t *testing.T) {
 	var sql string
 	//2016-08-02 13:37:26
@@ -432,7 +432,7 @@ func TestDatePlan(t *testing.T) {
 
 	//db: kingshard
 	//table: test_shard_year
-	//key: date
+	//keys: [date]
 	//nodes: [node2, node3]
 	//date_range: [2012-2015,2016-2018]
 	//type: date_year
@@ -509,12 +509,12 @@ func TestDatePlan(t *testing.T) {
 
 //db: kingshard
 //table: test1
-//key: id
+//keys: [id]
 //nodes: [node1,node2,node3]
 //locations: [4,4,4]
 //type: hash
 //
-// go test kingshard/proxy/router -v -run "TestSelectPlan"
+// go test proxy/router -v -run "TestSelectPlan"
 func TestSelectPlan(t *testing.T) {
 	var sql string
 	t1 := makeList(0, 12)
@@ -548,7 +548,7 @@ func TestSelectPlan(t *testing.T) {
 	//-
 	//  db: kingshard
 	//  table: test2
-	//  key: id
+	//  keys: [id]
 	//  type: range
 	//  nodes: [node1,node2,node3]
 	//  locations: [4,4,4]
@@ -589,6 +589,7 @@ func TestSelectPlan(t *testing.T) {
 	checkPlan(t, sql, makeList(0, 12), []int{0, 1, 2})
 }
 
+// go test proxy/router -v -run "TestValueSharding"
 func TestValueSharding(t *testing.T) {
 	var sql string
 

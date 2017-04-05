@@ -15,11 +15,11 @@
 package router
 
 import (
-	"fmt"
 	"config"
 	"core/errors"
-	"sqlparser"
+	"fmt"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
+	"sqlparser"
 	"strings"
 )
 
@@ -342,8 +342,10 @@ func (r *Router) BuildPlan(db string, statement sqlparser.Statement) (*Plan, err
 		return r.buildInsertPlan(db, stmt)
 	case *sqlparser.Replace:
 		return r.buildReplacePlan(db, stmt)
+
 	case *sqlparser.Select:
 		return r.buildSelectPlan(db, stmt)
+
 	case *sqlparser.Update:
 		return r.buildUpdatePlan(db, stmt)
 	case *sqlparser.Delete:
@@ -386,6 +388,7 @@ func (r *Router) buildSelectPlan(db string, statement sqlparser.Statement) (*Pla
 	// SELECT * FROM table WHERE id > 100
 	if where != nil {
 		// fmt.Printf("where: %v\n", where.Expr)
+
 		plan.Criteria = where.Expr //路由条件
 		err = plan.calRouteIndexs()
 
@@ -679,13 +682,13 @@ func (r *Router) rewriteSelectSql(plan *Plan, node *sqlparser.Select, tableIndex
 			}
 		} else {
 			if plan.Rule.AllNodeSingleTable {
+				fmt.Fprintf(buf, "%s",
+					sqlparser.String(v.Expr),
+				)
+			} else {
 				fmt.Fprintf(buf, "%s_%04d",
 					sqlparser.String(v.Expr),
 					tableIndex,
-				)
-			} else {
-				fmt.Fprintf(buf, "%s",
-					sqlparser.String(v.Expr),
 				)
 			}
 		}

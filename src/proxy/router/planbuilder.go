@@ -20,7 +20,6 @@ import (
 
 	"strings"
 
-	"fmt"
 	"core/errors"
 	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 	"sqlparser"
@@ -87,6 +86,7 @@ func (plan *Plan) getTableIndexs(expr sqlparser.BoolExpr) ([]int, error) {
 // 先只考虑 HashShard的情况
 //
 func (plan *Plan) getHashShardTableIndex(expr sqlparser.BoolExpr) ([]int, error) {
+	// fmt.Printf("getHashShardTableIndex")
 	var index int
 	var err error
 	switch criteria := expr.(type) {
@@ -102,6 +102,7 @@ func (plan *Plan) getHashShardTableIndex(expr sqlparser.BoolExpr) ([]int, error)
 				// 如果右边是id, 那左边是Value
 				index, err = plan.getTableIndexByValue(criteria.Left)
 			}
+			// fmt.Printf("Hash Table Index: %d", index)
 			if err != nil {
 				return nil, err
 			}
@@ -314,6 +315,7 @@ func (plan *Plan) calRouteIndexs() error {
 	if plan.Rule.Type == DefaultRuleType {
 		// 如果不分区，则直接返回第0个Node
 		// RouteTableIndexs 为空
+		// fmt.Printf("calRouteIndexs: DefaultRuleType\n")
 		plan.RouteNodeIndexs = []int{0}
 		return nil
 	}
@@ -382,6 +384,7 @@ func (plan *Plan) getValueType(valExpr sqlparser.ValExpr) int {
 		if string(node.Qualifier) == plan.Rule.Table {
 			node.Qualifier = nil
 		}
+		// fmt.Printf("Node Name: %s, keys: %s\n", node.Name, strings.Join(plan.Rule.Keys, ", "))
 		if listContains(strings.ToLower(string(node.Name)), plan.Rule.Keys) {
 			return EID_NODE //表示这是分片id对应的node
 		}
@@ -404,7 +407,7 @@ func (plan *Plan) getValueType(valExpr sqlparser.ValExpr) int {
 func (plan *Plan) getTableIndexByBoolExpr(node sqlparser.BoolExpr) ([]int, error) {
 	switch node := node.(type) {
 	case *sqlparser.AndExpr:
-
+		// fmt.Printf("And Expr ...\n")
 		// A & B
 		// left & right
 		left, err := plan.getTableIndexByBoolExpr(node.Left)
@@ -417,7 +420,7 @@ func (plan *Plan) getTableIndexByBoolExpr(node sqlparser.BoolExpr) ([]int, error
 		}
 		return interList(left, right), nil
 	case *sqlparser.OrExpr:
-
+		// fmt.Printf("Or Expr ...\n")
 		// A or B
 		left, err := plan.getTableIndexByBoolExpr(node.Left)
 		if err != nil {
@@ -429,22 +432,26 @@ func (plan *Plan) getTableIndexByBoolExpr(node sqlparser.BoolExpr) ([]int, error
 		}
 		return unionList(left, right), nil
 	case *sqlparser.ParenBoolExpr:
+		// fmt.Printf("ParenBoolExpr ...\n")
 		//加上括号的BoolExpr，node.Expr去掉了括号
 		return plan.getTableIndexByBoolExpr(node.Expr)
 	case *sqlparser.ComparisonExpr:
 		// 例如: id in (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22)
 		// 原子表达式
+		// fmt.Printf("ComparisonExpr ...\n")
 		switch {
 		case sqlparser.StringIn(node.Operator, "=", "<", ">", "<=", ">=", "<=>"):
 			left := plan.getValueType(node.Left)
 			right := plan.getValueType(node.Right)
 			// id > 1
 			// 1 < id
+			// fmt.Printf("Operator: %s, %d, %d, l: %v, r: %v\n", node.Operator, left, right, node.Left, node.Right)
 			// 这两种模式
 			if (left == EID_NODE && right == VALUE_NODE) || (left == VALUE_NODE && right == EID_NODE) {
 				return plan.getTableIndexs(node)
 			}
 		case sqlparser.StringIn(node.Operator, "in", "not in"):
+			// fmt.Printf("StringIn ...\n")
 			// 如何处理in, not in呢?
 			left := plan.getValueType(node.Left)
 			right := plan.getValueType(node.Right)
@@ -460,6 +467,7 @@ func (plan *Plan) getTableIndexByBoolExpr(node sqlparser.BoolExpr) ([]int, error
 		}
 	case *sqlparser.RangeCond:
 		// 范围查询
+		// fmt.Printf("RangeCond ...\n")
 		left := plan.getValueType(node.Left)
 		from := plan.getValueType(node.From)
 		to := plan.getValueType(node.To)

@@ -42,7 +42,7 @@ imports:
   subpackages:
   - unix
 - name: golang.org/x/tools
-  version: 37a1062ad0bb70f026cd45d6b92cb37eacd927bb
+  version: 5682db0e919ed9cfc6f52ac32e170511a106eb3b
   subpackages:
   - cmd/goyacc
 - name: gopkg.in/yaml.v2
