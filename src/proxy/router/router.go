@@ -1002,7 +1002,7 @@ func (r *Router) generateReplaceSql(plan *Plan, stmt sqlparser.Statement) error 
 			nodeName := r.Nodes[nodeIndex]
 
 			buf := sqlparser.NewTrackedBuffer(nil)
-			buf.Fprintf("replace %vinto %v",
+			buf.Fprintf("replace %vinto %v.%v",
 				node.Comments,
 				node.Table,
 			)

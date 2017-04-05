@@ -45,11 +45,16 @@ func (c *ClientConn) handleUseDB(dbName string) error {
 		return err
 	}
 
-	if err = co.UseDB(dbName); err != nil {
+	db := dbName
+	if len(n.Cfg.DBName) > 0 {
+		db = n.Cfg.DBName
+	}
+
+	if err = co.UseDB(db); err != nil {
 		//reset the client database to null
 		c.db = ""
 		return err
 	}
-	c.db = dbName
+	c.db = db
 	return c.writeOK(nil)
 }

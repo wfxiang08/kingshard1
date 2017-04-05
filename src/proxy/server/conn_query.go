@@ -24,10 +24,10 @@ import (
 	"backend"
 	"core/errors"
 	"core/hack"
+	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 	"mysql"
 	"proxy/router"
 	"sqlparser"
-	log "github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 
 /*处理query语句*/
@@ -150,7 +150,11 @@ func (c *ClientConn) getBackendConn(n *backend.Node, fromSlave bool) (co *backen
 	}
 
 	// 使用指定的DB
-	if err = co.UseDB(c.db); err != nil {
+	db := c.db
+	if len(n.Cfg.DBName) > 0 {
+		db = n.Cfg.DBName
+	}
+	if err = co.UseDB(db); err != nil {
 		//reset the database to null
 		c.db = ""
 		return
@@ -162,6 +166,11 @@ func (c *ClientConn) getBackendConn(n *backend.Node, fromSlave bool) (co *backen
 	}
 
 	return
+}
+
+func (c *ClientConn) GetNormalizedDB(db string, n *backend.Node, tableIndex int) string {
+	// <db, node> ==> new_db name
+	return ""
 }
 
 //获取shard的conn，第一个参数表示是不是select

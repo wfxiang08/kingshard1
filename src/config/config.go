@@ -46,6 +46,7 @@ type Config struct {
 //node节点对应的配置
 type NodeConfig struct {
 	Name             string `yaml:"name"`
+	DBName             string `yaml:"db_name"`
 	DownAfterNoAlive int    `yaml:"down_after_noalive"`
 	MaxConnNum       int    `yaml:"max_conns_limit"`
 

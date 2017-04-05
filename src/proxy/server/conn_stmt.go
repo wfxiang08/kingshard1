@@ -22,9 +22,9 @@ import (
 	"strings"
 
 	"core/errors"
+	"github.com/wfxiang08/cyutils/utils/rolling_log"
 	"mysql"
 	"sqlparser"
-	"github.com/wfxiang08/cyutils/utils/rolling_log"
 )
 
 var paramFieldData []byte
@@ -82,7 +82,11 @@ func (c *ClientConn) handleStmtPrepare(sql string) error {
 		return fmt.Errorf("prepare error %s", err)
 	}
 
-	err = co.UseDB(c.db)
+	db := c.db
+	if len(n.Cfg.DBName) > 0 {
+		db = n.Cfg.DBName
+	}
+	err = co.UseDB(db)
 	if err != nil {
 		//reset the database to null
 		c.db = ""
