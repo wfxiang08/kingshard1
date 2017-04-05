@@ -52,7 +52,7 @@ type Rule struct {
 	Table string
 	Keys  []string // 允许指定多个Keys, 只有Keys[0]是主键，其他的Keys和Keys[0]具有相同的Sharding规则
 
-	Type  string
+	Type  string  // Rule的类型
 	Nodes []string
 	// 所有的子表的Index
 	// TableToNode 每个子表对应的Node的index
