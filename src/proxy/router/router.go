@@ -52,7 +52,7 @@ type Rule struct {
 	Table string
 	Keys  []string // 允许指定多个Keys, 只有Keys[0]是主键，其他的Keys和Keys[0]具有相同的Sharding规则
 
-	Type  string  // Rule的类型
+	Type  string // Rule的类型
 	Nodes []string
 	// 所有的子表的Index
 	// TableToNode 每个子表对应的Node的index
@@ -380,7 +380,7 @@ func (r *Router) buildSelectPlan(db string, statement sqlparser.Statement) (*Pla
 		tableName = sqlparser.String(v)
 	}
 
-	// fmt.Printf("TableName: %s\n", tableName)
+	fmt.Printf("DB: %s, TableName: %s\n", db, tableName)
 
 	plan.Rule = r.GetRule(db, tableName) //根据表名获得分表规则
 	where = stmt.Where
